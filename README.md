@@ -13,10 +13,9 @@ client for Rollbar, which *does* provide support for error reporting.
 Status
 ------
 
-[![Tests](https://github.com/jmcvetta/rollbar-api-client/workflows/Tests/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions)
+[![Tests](https://github.com/jmcvetta/rollbar-api-client/workflows/Tests/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions?query=workflow%3ATests)
 [![Coverage Status](https://coveralls.io/repos/github/jmcvetta/rollbar-api-client/badge.svg)](https://coveralls.io/github/rollbar/terraform-provider-rollbar)
-[![CodeQL](https://github.com/jmcvetta/rollbar-api-client/workflows/CodeQL/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions?query=workflow%3ACodeQL)
-[![ShiftLeft Scan](https://github.com/jmcvetta/rollbar-api-client/workflows/ShiftLeft%20Scan/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions?query=workflow%3A%22ShiftLeft+Scan%22)
+[![Code Quality Analysis](https://github.com/jmcvetta/rollbar-api-client/workflows/Code%20Quality%20Analysis/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions?query=workflow%3A%22Code+Quality+Analysis%22)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c5097d1a11f6f2310089/maintainability)](https://codeclimate.com/github.com/jmcvetta/rollbar-api-client/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c5097d1a11f6f2310089/test_coverage)](https://codeclimate.com/github/jmcvetta/rollbar-api-client/test_coverage)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jmcvetta/rollbar-api-client)](https://goreportcard.com/report/github.com/jmcvetta/rollbar-api-client)
