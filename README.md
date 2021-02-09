@@ -13,7 +13,7 @@ client for Rollbar, which *does* provide support for error reporting.
 Status
 ------
 
-[![Build & Test](https://github.com/jmcvetta/rollbar-api-client/workflows/Build%20&%20Test/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions)
+[![Tests](https://github.com/jmcvetta/rollbar-api-client/workflows/Tests/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions)
 [![Coverage Status](https://coveralls.io/repos/github/jmcvetta/rollbar-api-client/badge.svg)](https://coveralls.io/github/rollbar/terraform-provider-rollbar)
 [![CodeQL](https://github.com/jmcvetta/rollbar-api-client/workflows/CodeQL/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions?query=workflow%3ACodeQL)
 [![ShiftLeft Scan](https://github.com/jmcvetta/rollbar-api-client/workflows/ShiftLeft%20Scan/badge.svg)](https://github.com/jmcvetta/rollbar-api-client/actions?query=workflow%3A%22ShiftLeft+Scan%22)
