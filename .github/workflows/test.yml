@@ -1,4 +1,4 @@
-name: Quick Tests
+name: Tests
 on:
   push:
   # Scheduled runs ensure we are alerted to incompatibilities in new releases of
