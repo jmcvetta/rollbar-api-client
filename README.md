@@ -13,4 +13,4 @@ client for Rollbar, which *does* provide support for error reporting.
 Documentation
 -------------
 
-[![Documentation](https://godoc.org/github.com/rollbar/terraform-provider-rollbar?status.svg)](http://godoc.org/github.com/rollbar/terraform-provider-rollbar)
+[![Documentation](https://godoc.org/github.com/jmcvetta/rollbar-api-client?status.svg)](http://godoc.org/github.com/jmcvetta/rollbar-api-client)
