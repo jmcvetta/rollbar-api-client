@@ -1,10 +1,6 @@
-name: Quick Tests
+name: Tests
 on:
   push:
-  # Scheduled runs ensure we are alerted to incompatibilities in new releases of
-  # Go and Terraform.
-  schedule:
-    - cron: '0 10 * * 3'
 
 jobs:
 
@@ -23,7 +19,7 @@ jobs:
 
     steps:
 
-      # Install Go and Terraform
+      # Install Go
       - uses: actions/setup-go@v2
         with:
           go-version: '${{ matrix.go }}'
@@ -41,67 +37,47 @@ jobs:
 
       # Run unit tests
       - name: Unit tests
-        run: make test
-
+        run: go test -v ./...
 
   #
-  # Verify Terraform compatibility
+  # Report code coverage
   #
-  terraform:
-    name: Terraform
+  coverage:
+    name: Coverage
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        terraform:
-          - "" # Latest
-          - "0.14"
-          - "0.13"
-          - "0.12"
-
-    env:
-      ROLLBAR_API_KEY: ${{ secrets.ROLLBAR_API_KEY }}
-
     steps:
-
-      # Install Go and Terraform
-      - uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_wrapper: false
-          terraform_version: "${{ matrix.terraform }}"
       - uses: actions/setup-go@v2
-
-      # Checkout
       - uses: actions/checkout@v2
-
-      # Restore cache
       - uses: actions/cache@v2
         with:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-          # Blank version number means latest version of Go.
-          key: ${{ runner.os }}-go-v-${{ hashFiles('**/go.sum') }}
-
-
-      # Install Provider
-      - name: Install
-        if: ${{ !startsWith(matrix.terraform, '0.12') }}
-        run: make install
-      - name: Install for Terraform 0.12
-        if: ${{ startsWith(matrix.terraform, '0.12') }}
-        run: make install012
-
-      # Setup Terraform configuration for local testing
-      - name: Overwrite configuration to use locally built provider
-        run: cp provider.tf.local provider.tf
-        working-directory: ./example
-
-      # Verify Terraform plan does not error
-      - name: Initialize Terraform
-        run: terraform init
-        working-directory: ./example
-      - name: Terraform plan
-        run: terraform plan -var 'rollbar_token=${{ secrets.ROLLBAR_TOKEN }}'
-        working-directory: ./example
+          key: ${{ runner.os }}-go-v${{ matrix.go }}-${{ hashFiles('**/go.sum') }}
+      - name: Unit tests
+        run: go test -v -covermode=atomic -coverprofile=coverage.out ./...
+      - name: Convert Go coverage file to lcov format
+        run: |
+          go install github.com/jandelgado/gcov2lcov
+          ~/go/bin/gcov2lcov -infile coverage.out -outfile lcov.info
+      - uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./lcov.info
+      - name: Upload coverage data to CodeClimate
+        uses: paambaati/codeclimate-action@v2.7.4
+        with:
+          coverageLocations: |
+            ${{github.workspace}}/*lcov*:lcov
         env:
-          ROLLBAR_TOKEN: ${{ secrets.ROLLBAR_TOKEN }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+  golangci:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.36
