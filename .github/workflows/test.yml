@@ -41,7 +41,7 @@ jobs:
 
       # Run unit tests
       - name: Unit tests
-        run: make test
+        run: go test -v -covermode=atomic -coverprofile=coverage.out ./...
 
 
   #
