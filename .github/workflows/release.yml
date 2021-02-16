@@ -1,8 +1,8 @@
 name: Semantic Release
 on:
   push:
-#    branches:
-#      - disabled_until_ready_for_continous_delivery
+    branches:
+      - disabled_until_ready_for_continous_delivery
 
 jobs:
   release:
