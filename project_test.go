@@ -148,6 +148,34 @@ func (s *Suite) TestDeleteProject() {
 	})
 }
 
+// TestFindProject tests listing Rollbar projects.
+func (s *Suite) TestFindProject() {
+	u := s.client.BaseURL + pathProjectList
+
+	// Success
+	r := responderFromFixture("project/list.json", http.StatusOK)
+	httpmock.RegisterResponder("GET", u, r)
+	expected := Project {
+			ID:           411703,
+			Name:         "foo",
+			AccountID:    317418,
+			Status:       "enabled",
+			DateCreated:  1602085340,
+			DateModified: 1602085340,
+		}
+	actual, err := s.client.FindProject("foo")
+	s.Nil(err)
+	s.Equal(&expected, actual)
+
+	_, err = s.client.FindProject("does_not_exist")
+	s.Equal(ErrNotFound, err)
+
+	s.checkServerErrors("GET", u, func() error {
+		_, err = s.client.FindProject("does_not_matter")
+		return err
+	})
+}
+
 // TestFindProjectTeamIDs tests finding the team IDs for a Rollbar project.
 func (s *Suite) TestFindProjectTeamIDs() {
 	var u string // URL
