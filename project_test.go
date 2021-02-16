@@ -165,7 +165,7 @@ func (s *Suite) TestFindProject() {
 		}
 	actual, err := s.client.FindProject("foo")
 	s.Nil(err)
-	s.Equal(expected, actual)
+	s.Equal(&expected, actual)
 
 	_, err = s.client.FindProject("does_not_exist")
 	s.Equal(ErrNotFound, err)
