@@ -2,7 +2,8 @@ name: Semantic Release
 on:
   push:
     branches:
-      - master
+      - disabled_until_ready_for_continous_delivery
+
 jobs:
   release:
     name: Semantic Release
