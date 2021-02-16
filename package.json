@@ -1,0 +1,32 @@
+{
+  "name": "rollbar-api-client",
+  "description": "Rollbar Management API Client",
+  "directories": {
+    "doc": "docs",
+    "example": "example"
+  },
+  "scripts": {
+    "test": "make test",
+    "get-version": "echo $npm_package_version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcvetta/rollbar-api-client.git"
+  },
+  "keywords": [
+    "terraform",
+    "rollbar"
+  ],
+  "author": "Jason McVetta <jmcvetta@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmcvetta/rollbar-api-client/issues"
+  },
+  "homepage": "https://github.com/jmcvetta/rollbar-api-client#readme",
+  "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^17.3.0"
+  }
+}
