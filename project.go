@@ -204,6 +204,21 @@ func (c *RollbarAPIClient) DeleteProject(projectID int) error {
 	return nil
 }
 
+// FindProject finds the Rollbar project with a given name.
+func (c *RollbarAPIClient) FindProject(name string) (*Project, error) {
+	projects, err := c.ListProjects()
+	if err != nil {
+		return nil, err
+	}
+	for _, p := range projects {
+		if p.Name == name {
+			return &p, nil
+		}
+	}
+	return nil, ErrNotFound
+
+}
+
 // FindProjectTeamIDs finds IDs of all teams assigned to the project. Caution:
 // this is a potentially slow operation that makes multiple calls to the API.
 // https://github.com/rollbar/terraform-provider-rollbar/issues/104
