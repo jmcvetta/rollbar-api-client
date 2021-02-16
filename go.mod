@@ -1,4 +1,4 @@
-module github.com/rollbar/terraform-provider-rollbar
+module github.com/jmcvetta/rollbar-api-client
 
 go 1.15
 
