@@ -5,7 +5,7 @@ go 1.15
 require (
 	github.com/brianvoe/gofakeit/v5 v5.11.2
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dnaeon/go-vcr v1.1.0
+	github.com/dnaeon/go-vcr v1.2.0
 	github.com/go-resty/resty/v2 v2.5.0
 	github.com/jarcoal/httpmock v1.0.8
 	github.com/kr/text v0.2.0 // indirect
